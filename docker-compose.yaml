@@ -2,7 +2,7 @@ version: '2'
 services:
   serve:
     # we use image for faster developing with angular-boilerplate
-    image: schwamster/angular-template:1
+    image: schwamster/angular-template:3
     command: ng serve --host 0.0.0.0
     environment:
       NODE_ENV: development
@@ -17,7 +17,7 @@ services:
   # FIXME(hoatle): $ docker-compose up test should work repeatedly
   test:
     #build: .
-    image: schwamster/angular-template:1
+    image: schwamster/angular-template:3
     command: ng test --browsers Chrome_no_sandbox
     environment:
       NODE_ENV: development
