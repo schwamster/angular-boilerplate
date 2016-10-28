@@ -1,6 +1,4 @@
-FROM teracy/angular-cli
-
-MAINTAINER hoatle <hoatle@teracy.com>
+FROM schwamster/angular-cli:beta18
 
 RUN useradd --user-group --create-home --shell /bin/false app
 
