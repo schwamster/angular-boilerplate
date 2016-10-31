@@ -2,12 +2,15 @@ version: '2'
 services:
   serve:
     # we use image for faster developing with angular-boilerplate
-    image: schwamster/angular-template:3
+    image: schwamster/angular-template:5
     command: ng serve --host 0.0.0.0
     environment:
       NODE_ENV: development
+      HTTP_PROXY: http://proxyseso.scania.com:8080
+      HTTPS_PROXY: http://proxyseso.scania.com:8080
     volumes:
       - .:/home/app
+      # if you dont care about the node_modules on the host (e.g. for your ide uncomment the next line, otherwise leave as it is and run setup-node-modules.ps1 the first time)
       - /home/app/node_modules
     ports:
       - "4200:4200"
@@ -17,8 +20,20 @@ services:
   # FIXME(hoatle): $ docker-compose up test should work repeatedly
   test:
     #build: .
-    image: schwamster/angular-template:3
+    image: schwamster/angular-template:5
     command: ng test --browsers Chrome_no_sandbox
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+    privileged: true # for Chrome to run on Docker
+    # see: https://github.com/docker/compose/issues/2231#issuecomment-165137408
+    #tty: true # problem: https://github.com/docker/compose/issues/3783
+  e2e:
+    #build: .
+    image: schwamster/angular-template:5
+    command: ng e2e
     environment:
       NODE_ENV: development
     volumes:

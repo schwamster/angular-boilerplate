@@ -1,0 +1,1 @@
+docker run -it --privileged=true -w /home/app --env HTTPS_PROXY=http://proxyseso.scania.com:8080 --env HTTP_PROXY=http://proxyseso.scania.com:8080 -v //c/Users/btovb8/angular-boilerplate:/home/app schwamster/angular-template:5 npm install
